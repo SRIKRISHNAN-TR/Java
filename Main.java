@@ -7,25 +7,26 @@ import java.util.Map;
 
 class Main{
     public static void main(String[] args){
-        int n, k;
-        System.out.println("Enter n & k : ");
-        Scanner sca = new Scanner(System.in);
-        n = sca.nextInt();
-        k = sca.nextInt();
-        int[] arr= new int[n];
-        for(int i=0;i<n;i++){
-            arr[i] = sca.nextInt();
-        }
-         Map<Integer,Integer> map = new HashMap<>();
-         for(int i=0;i<arr.length;i++){
-            if(!map.containsKey(k - arr[i])){
-                map.put(arr[i],i);
-            }
-            else {
-                System.out.println(map.get(k - arr[i]) + " " + i);
-                break;
-            }
-         }
+
+        // int n, k;
+        // System.out.println("Enter n & k : ");
+        // Scanner sca = new Scanner(System.in);
+        // n = sca.nextInt();
+        // k = sca.nextInt();
+        // int[] arr= new int[n];
+        // for(int i=0;i<n;i++){
+        //     arr[i] = sca.nextInt();
+        // }
+        //  Map<Integer,Integer> map = new HashMap<>();
+        //  for(int i=0;i<arr.length;i++){
+        //     if(!map.containsKey(k - arr[i])){
+        //         map.put(arr[i],i);
+        //     }
+        //     else {
+        //         System.out.println(map.get(k - arr[i]) + " " + i);
+        //         break;
+        //     }
+        //  }
         
 //Longest Subarray with sun k
   
@@ -77,7 +78,7 @@ class Main{
         // System.out.println(i);
         // break;
         //     }
-        }
+        
         // HashSet <Integer> set = new HashSet<>();
         // for(int i=0;i<n;i++){
         // arr[i] = sca.nextInt();
@@ -85,6 +86,7 @@ class Main{
         // for(int i=0;i<n;i++){
         // arr1[i] = sca.nextInt();
         // }
+
         // Union of two arrays
 
         // int i=0,j=0;
@@ -163,4 +165,87 @@ class Main{
 // while (se.hasNext()) {
 //     System.out.print(se.next());
 // }
+
+    int n;
+    Scanner scanner = new Scanner(System.in);
+    n  = scanner.nextInt();
+    int[] arr= new int[n];
+    for(int i=0;i<n;i++){
+        arr[i] = scanner.nextInt();
     }
+// Dutch National Flag Algorithm
+
+    // int low =0,mid=0,high= n - 1;
+    // while(mid <= high){
+    //     if(arr[mid] == 0){
+    //         swap(arr,mid,low);
+    //         low++;
+    //         mid++;
+    //     }
+    //     else if(arr[mid] == 1){
+    //         mid++;
+    //     }
+    //     else{
+    //         swap(arr,mid, high);
+    //         high--;
+    //     }
+    // }
+    // for(int a : arr){
+    //     System.out.println(a);
+    // }
+
+//Majority element ( > N /2 times)
+
+// Map<Integer,Integer> map = new HashMap<>();
+// for(int i=0;i<n;i++){
+//     if(!map.containsKey(arr[i]))
+//     map.put(arr[i],1);
+//     else{
+//         map.put(arr[i],map.get(arr[i]) + 1);
+//     }
+// }
+// for(int key : map.keySet()){
+//     if(map.get(key) > n / 2){
+//     System.out.println("Majority element:"+ " " + key);
+//     return;
+//     }
+// }
+
+// Moose voting algorithm
+    // int count =0,element=0,count1=0;
+    // for(int i=0;i<arr.length;i++){
+    //     if(count == 0){
+    //         element = arr[i];
+    //         count = 1;
+    //     }
+    //     if(arr[i] == element){
+    //         count++;
+    //     }
+    //     else{
+    //         count--;
+    //     }
+    //     if(count == 0) continue;
+    // }
+
+    // for(int i=0;i<arr.length;i++){
+    //     if(arr[i] == element) count1++;
+    // }
+
+    // if(count1 > arr.length / 2) System.out.println(element);
+
+// Kadane's Algorithm
+   int sum =0,max = Integer.MIN_VALUE,tar =7;
+   for(int i=0;i<arr.length;i++){
+    sum += arr[i];
+    if(sum > max) max = sum;
+    if(sum < 0) sum =0;
+   }
+   System.out.print(max);
+     scanner.close();
+    }
+    public static void swap(int[] arr,int a,int b){
+        int temp = arr[a];
+        arr[a]= arr[b];
+        arr[b] = temp;
+    }
+}
