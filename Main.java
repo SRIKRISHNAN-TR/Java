@@ -234,18 +234,62 @@ class Main{
     // if(count1 > arr.length / 2) System.out.println(element);
 
 // Kadane's Algorithm
-   int sum =0,max = Integer.MIN_VALUE,tar =7;
-   for(int i=0;i<arr.length;i++){
-    sum += arr[i];
-    if(sum > max) max = sum;
-    if(sum < 0) sum =0;
-   }
-   System.out.print(max);
+//    int sum =0,max = Integer.MIN_VALUE,start=0,end=0,tempstart = 0;
+//    for(int i=0;i<arr.length;i++){
+//     sum += arr[i];
+//     if(sum > max){ max = sum;
+//         end = i;
+//         start = tempstart;
+//     }
+//     if(sum < 0){ sum =0;
+//         tempstart = i +1;
+//     }
+//    }
+//    System.out.println(max);
+//    for(int i = start;i<=end;i++){
+//     System.out.print(arr[i] + " ");
+//    }
+
+// Next Permutation
+    int ind = -1;
+
+    // Step 1: find breakpoint
+    for (int i = n - 2; i >= 0; i--) {
+        if (arr[i] < arr[i + 1]) {
+            ind = i;
+            break;
+        }
+    }
+
+    // Step 2: if no breakpoint, reverse entire array
+    if (ind == -1) {
+        revarr(arr, 0, n - 1);
+        return;
+    }
+
+    // Step 3: find just greater element & swap
+    for (int i = n - 1; i > ind; i--) {
+        if (arr[i] > arr[ind]) {
+            swap(arr, ind, i);
+            break;
+        }
+    }
+
+    // Step 4: reverse the suffix
+    revarr(arr, ind + 1, n - 1);
+
      scanner.close();
     }
     public static void swap(int[] arr,int a,int b){
         int temp = arr[a];
         arr[a]= arr[b];
         arr[b] = temp;
+    }
+    public static void revarr(int[] arr,int a,int b){
+         while (a < b) {
+        swap(arr, a, b);
+        a++;
+        b--;
+        }
     }
 }
