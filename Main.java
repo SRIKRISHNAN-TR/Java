@@ -3,8 +3,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-
+class TreeNode{
+    TreeNode left;
+    TreeNode right;
+    int val;
+    TreeNode(int val){
+        this.val = val;
+    }
+    TreeNode(int val,TreeNode left,TreeNode right){
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
 class Main{
     public static void main(String[] args){
 
@@ -169,10 +182,10 @@ class Main{
     int n;
     Scanner scanner = new Scanner(System.in);
     n  = scanner.nextInt();
-    int[] arr= new int[n];
-    for(int i=0;i<n;i++){
-        arr[i] = scanner.nextInt();
-    }
+    // int[] arr= new int[n];
+    // for(int i=0;i<n;i++){
+    //     arr[i] = scanner.nextInt();
+    // }
 // Dutch National Flag Algorithm
 
     // int low =0,mid=0,high= n - 1;
@@ -250,36 +263,90 @@ class Main{
 //     System.out.print(arr[i] + " ");
 //    }
 
-// Next Permutation
-    int ind = -1;
+// // Next Permutation
+//     int ind = -1;
 
-    // Step 1: find breakpoint
-    for (int i = n - 2; i >= 0; i--) {
-        if (arr[i] < arr[i + 1]) {
-            ind = i;
-            break;
-        }
+//     // Step 1: find breakpoint
+//     for (int i = n - 2; i >= 0; i--) {
+//         if (arr[i] < arr[i + 1]) {
+//             ind = i;
+//             break;
+//         }
+//     }
+
+//     // Step 2: if no breakpoint, reverse entire array
+//     if (ind == -1) {
+//         revarr(arr, 0, n - 1);
+//         return;
+//     }
+
+//     // Step 3: find just greater element & swap
+//     for (int i = n - 1; i > ind; i--) {
+//         if (arr[i] > arr[ind]) {
+//             swap(arr, ind, i);
+//             break;
+//         }
+//     }
+
+//     // Step 4: reverse the suffix
+//     revarr(arr, ind + 1, n - 1);
+    
+
+//      scanner.close();
+
+// Trees Traversal 
+    TreeNode root = new TreeNode(n);
+    root.left = new TreeNode(5);
+    root.right = new TreeNode(6);
+    root.left.left = new TreeNode(10);
+    root.left.right = new TreeNode(11);
+    root.right.left = new TreeNode(12);
+    root.right.right = new TreeNode(13);
+    List<Integer> answer = inorder_traversal(root);
+    List<Integer> answer1 = preorder_traversal(root);
+    List<Integer> answer2 = postorder_traversal(root);
+    System.out.println("Inorder:\n" + answer);
+    System.out.println("Preorder:\n" + answer1);
+    System.out.println("Postorder:\n" + answer2);
+    }
+    //Inorder Traversal
+    public static void funct(TreeNode root,List<Integer> answer){
+        if(root == null) return;
+        funct(root.left,answer);
+        answer.add(root.val);
+        funct(root.right,answer);
+    }
+    //Preorder Traversal
+    public static void funct1(TreeNode root, List<Integer> answer){
+        if(root == null) return;
+        answer.add(root.val);
+        funct1(root.left, answer);
+        funct1(root.right, answer);
+    }
+    //PostOrder
+    public static void funct2(TreeNode root,List<Integer> answer){
+        if(root == null) return;
+        funct2(root.left, answer);
+        funct2(root.right, answer);
+        answer.add(root.val);
     }
 
-    // Step 2: if no breakpoint, reverse entire array
-    if (ind == -1) {
-        revarr(arr, 0, n - 1);
-        return;
+    public static List<Integer> inorder_traversal(TreeNode root){
+        List<Integer> answer = new ArrayList<>();
+        funct(root, answer);
+        return answer;
     }
-
-    // Step 3: find just greater element & swap
-    for (int i = n - 1; i > ind; i--) {
-        if (arr[i] > arr[ind]) {
-            swap(arr, ind, i);
-            break;
-        }
+    public static List<Integer> preorder_traversal(TreeNode root){
+        List<Integer> answer = new ArrayList<>();
+        funct1(root, answer);
+        return answer;
     }
-
-    // Step 4: reverse the suffix
-    revarr(arr, ind + 1, n - 1);
-
-     scanner.close();
+    public static List<Integer> postorder_traversal(TreeNode root){
+        List<Integer> answer = new ArrayList<>();
+        funct2(root, answer);
+        return answer;
     }
+    
     public static void swap(int[] arr,int a,int b){
         int temp = arr[a];
         arr[a]= arr[b];
