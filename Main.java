@@ -295,20 +295,23 @@ class Main{
 //      scanner.close();
 
 // Trees Traversal 
-    TreeNode root = new TreeNode(n);
-    root.left = new TreeNode(5);
-    root.right = new TreeNode(6);
-    root.left.left = new TreeNode(10);
-    root.left.right = new TreeNode(11);
-    root.right.left = new TreeNode(12);
-    root.right.right = new TreeNode(13);
-    List<Integer> answer = inorder_traversal(root);
-    List<Integer> answer1 = preorder_traversal(root);
-    List<Integer> answer2 = postorder_traversal(root);
-    System.out.println("Inorder:\n" + answer);
-    System.out.println("Preorder:\n" + answer1);
-    System.out.println("Postorder:\n" + answer2);
+    // TreeNode root = new TreeNode(n);
+    // root.left = new TreeNode(5);
+    // root.right = new TreeNode(6);
+    // root.left.left = new TreeNode(10);
+    // root.left.right = new TreeNode(11);
+    // root.right.left = new TreeNode(12);
+    // root.right.right = new TreeNode(13);
+    // List<Integer> answer = inorder_traversal(root);
+    // List<Integer> answer1 = preorder_traversal(root);
+    // List<Integer> answer2 = postorder_traversal(root);
+    // System.out.println("Inorder:\n" + answer);
+    // System.out.println("Preorder:\n" + answer1);
+    // System.out.println("Postorder:\n" + answer2);
+
+
     }
+
     //Inorder Traversal
     public static void funct(TreeNode root,List<Integer> answer){
         if(root == null) return;
@@ -336,11 +339,13 @@ class Main{
         funct(root, answer);
         return answer;
     }
+
     public static List<Integer> preorder_traversal(TreeNode root){
         List<Integer> answer = new ArrayList<>();
         funct1(root, answer);
         return answer;
     }
+    
     public static List<Integer> postorder_traversal(TreeNode root){
         List<Integer> answer = new ArrayList<>();
         funct2(root, answer);
@@ -360,3 +365,4 @@ class Main{
         }
     }
 }
+
