@@ -182,30 +182,30 @@ class Main{
     int n;
     Scanner scanner = new Scanner(System.in);
     n  = scanner.nextInt();
-    // int[] arr= new int[n];
-    // for(int i=0;i<n;i++){
-    //     arr[i] = scanner.nextInt();
-    // }
+    int[] arr= new int[n];
+    for(int i=0;i<n;i++){
+        arr[i] = scanner.nextInt();
+    }
 // Dutch National Flag Algorithm
 
-    // int low =0,mid=0,high= n - 1;
-    // while(mid <= high){
-    //     if(arr[mid] == 0){
-    //         swap(arr,mid,low);
-    //         low++;
-    //         mid++;
-    //     }
-    //     else if(arr[mid] == 1){
-    //         mid++;
-    //     }
-    //     else{
-    //         swap(arr,mid, high);
-    //         high--;
-    //     }
-    // }
-    // for(int a : arr){
-    //     System.out.println(a);
-    // }
+    int low =0,mid=0,high= n - 1;
+    while(mid <= high){
+        if(arr[mid] == 0){
+            swap(arr,mid,low);
+            low++;
+            mid++;
+        }
+        else if(arr[mid] == 1){
+            mid++;
+        }
+        else{
+            swap(arr,mid, high);
+            high--;
+        }
+    }
+    for(int a : arr){
+        System.out.print(a + " ");
+    }
 
 //Majority element ( > N /2 times)
 

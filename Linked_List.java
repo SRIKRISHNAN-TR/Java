@@ -34,7 +34,8 @@ public class Linked_List {
         //     System.out.println(res.pop());
         // }
 
-        crud.middle();
+        // crud.sort();
+        crud.add_one(crud.head);
     }
 }
 class Node{
@@ -84,7 +85,7 @@ class LinkedList{
     }
 
     //insert at K index
-    public void insert_k(int data,int k){
+    public void insert_k(int data,int k){  
         if(k == 1){
             insert_start(data);
         }
@@ -107,6 +108,15 @@ class LinkedList{
             temp = temp.next;
         }
         System.out.println("Null");
+    }
+    // display parameterized
+        public void display_para(Node head){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+        System.out.print("Null");
     }
 
     //search
@@ -170,6 +180,7 @@ class LinkedList{
             System.out.println("Element not found");
             return;
         }
+
         else{
             temp.next = temp.next.next;
         }
@@ -179,6 +190,7 @@ class LinkedList{
         if(head == null ||head.next == null){
             return;
         }
+
         Node temp = head;
         while(temp.next.next != null){
             temp = temp.next;
@@ -274,6 +286,85 @@ class LinkedList{
         System.out.println(result);
         return 0;
     }
+
+    //sort all the zeros,ones and twos 
+    public void sort(){
+    Node zeroHead = new Node(-1);
+    Node oneHead = new Node(-1);
+    Node twoHead = new Node(-1);
+    
+    Node zero = zeroHead;
+    Node one = oneHead;
+    Node two = twoHead;
+
+    Node temp = head;
+        while(temp != null){
+            if(temp.data == 0){ zero.next = new Node(0); zero = zero.next; }
+            else if(temp.data == 1){ one.next = new Node(1); one = one.next; }
+            else if(temp.data == 2){ two.next = new Node(2); two = two.next; }
+            temp = temp.next;
+        }
+    zero.next = (oneHead.next != null) ? oneHead.next : twoHead.next;
+    one.next = twoHead.next;
+    head = zeroHead.next;
+    display_para(head);
+    }
+
+    //Reverse the linked list
+    public Node reverse(Node head){
+        Node temp = head;
+        Node back = null;
+        while(temp != null){
+            Node front = temp.next;
+            temp.next = back;
+            back = temp;
+            temp = front;
+        }
+        return back;
+    }
+
+    // Add one to Linkedlist
+
+public void add_one(Node head){
+
+    Node temp = reverse(head);   // reverse and store new head in temp
+    Node newHead = temp;         // preserve starting node
+
+    int carry = 1;
+
+    while (temp != null) {
+
+        int sum = temp.data + carry;
+        temp.data = sum % 10;
+        carry = sum / 10;
+
+        if (carry == 0) break;
+
+        if (temp.next == null && carry != 0) {
+            temp.next = new Node(carry);
+            carry = 0;
+            break;
+        }
+
+        temp = temp.next;
+    }
+
+    newHead = reverse(newHead);   // reverse full list again
+
+    display_para(newHead);        // print properly
+}
+
+//add_one recur
+public int one(Node temp){
+    if(temp == null){
+        return 1;
+    }
+    int carry = one(temp.next);
+    temp.data= temp.data + carry;
+    if(temp.data < 10) return 0;
+    temp.data = 0;      
+    return 1;
+}   
 }
 
 class Listnode{
@@ -288,7 +379,6 @@ class Listnode{
         this.next = next;
         this.prev = prev;
     }
-    
 }
 
 
